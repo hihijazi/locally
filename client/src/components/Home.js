@@ -1,24 +1,34 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar"; // Import the SearchBar component
 
 function Home() {
   const [states, setStates] = useState([]);
+  const [filteredStates, setFilteredStates] = useState([]);
 
   useEffect(() => {
     fetch("/states")
       .then((r) => r.json())
-      .then(setStates);
+      .then((data) => {
+        setStates(data);
+        setFilteredStates(data); // Initialize filteredStates with all states
+      });
   }, []);
+
+  const handleSearch = (searchTerm) => {
+    // Filter states based on search term
+    const filtered = states.filter((state) =>
+      state.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredStates(filtered);
+  };
 
   return (
     <section>
-      <h2>All States</h2>
+      <h2>Browse All States</h2>
+      {/* Render the SearchBar component */}
+      <SearchBar options={states} onSelect={handleSearch} /> {/* Pass handleSearch as onSelect */}
       <ul>
-        {states.map((state) => (
-          <li key={state.id}>
-            <Link to={`/states/${state.id}`}>{state.name}</Link>
-          </li>
-        ))}
       </ul>
     </section>
   );
