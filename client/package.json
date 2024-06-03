@@ -2,7 +2,7 @@
     "name": "flask-api-find-local-places-to-visit-in-different-states",
     "version": "0.1.0",
     "private": true,
-    "proxy": "http://127.0.0.1:5555",
+    "proxy": "http://127.0.0.1:5000",
     "dependencies": {
       "@testing-library/jest-dom": "^5.12.0",
       "@testing-library/react": "^11.2.7",
@@ -25,7 +25,7 @@
     "eslintConfig": {
       "extends": [
         "react-app",
-        "react-app/jest"
+        "eslint-config-react-app/jest"
       ]
     },
     "browserslist": {
