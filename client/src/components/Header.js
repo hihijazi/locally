@@ -4,7 +4,7 @@ function Header() {
   return (
     <header>
       <h1>
-        <Link to="/">Welcome to Locally</Link>
+        <Link to="/">Locally</Link>
       </h1>
       <nav>
         <ul>

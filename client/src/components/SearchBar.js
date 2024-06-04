@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import './SearchBar.css'; // Import the CSS file for styling
 
 const SearchBar = ({ options = [], onSelect }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -12,22 +15,31 @@ const SearchBar = ({ options = [], onSelect }) => {
     setSearchTerm(""); 
   };
 
-  console.log("options:", options); // Log the value of options
-  console.log("searchTerm:", searchTerm); // Log the value of searchTerm
+  const handleSearch = () => {
+    // Trigger search based on searchTerm
+    const filtered = options.filter((option) =>
+      option.label && option.label.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    if (filtered.length > 0) {
+      handleSelectOption(filtered[0]);
+    }
+  };
 
-  // Check if options array is null or undefined before filtering
   const filteredOptions = options ? options.filter((option) =>
-    option.label && option.label.toLowerCase().includes(searchTerm.toLowerCase()) // Check if option.label is defined
+    option.label && option.label.toLowerCase().includes(searchTerm.toLowerCase())
   ) : [];
 
   return (
-    <div>
+    <div className="search-bar-container">
       <input
         type="text"
         value={searchTerm}
         onChange={handleInputChange}
         placeholder="Search for a state..."
       />
+      <button onClick={handleSearch}>
+        <FontAwesomeIcon icon={faSearch} />
+      </button>
       <ul>
         {filteredOptions.map((option) => (
           <li key={option.value} onClick={() => handleSelectOption(option)}>

@@ -1,0 +1,11 @@
+.welcome {
+    font-size: 3em; /* Make the font size bigger */
+    text-align: center; /* Center the text horizontally */
+    margin-top: 1em; /* Add some margin to the top */
+  }
+  
+  .description {
+    text-align: center; /* Center the text horizontally */
+    margin-bottom: 2em; /* Add some margin to the bottom */
+  }
+  
